@@ -10,5 +10,5 @@ snapshot_create_request_body: {
 es_snapshot_host: "localhost"
 snapshot_base_path: "default"
 
-cloud_storage_esbackup_bucketname: "{{ cloud_storage_management_bucketname }}"
+#cloud_storage_esbackup_bucketname: "{{ cloud_storage_management_bucketname }}"
 cloud_storage_esbackup_foldername: "elasticsearch-snapshots"
