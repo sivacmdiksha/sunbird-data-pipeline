@@ -51,6 +51,11 @@
     local_file_or_folder_path: "{{ postgresql_backup_gzip_file_path }}"
   when: cloud_service_provider == "gcloud"
 
+- name: Ensure oci oss bucket exists
+  command: oci os bucket get --name dev-dp-postgres-backup
+  become: yes
+  become_user: root
+  
 - name: upload backup to OCI
   include_role:
     name: oci-cloud-storage
