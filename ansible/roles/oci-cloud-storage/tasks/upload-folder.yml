@@ -1,8 +1,15 @@
 ---
-- name: Ensure oci oss bucket exists
-  become: root
-  command: oci os bucket get --name {{ oss_bucket_name }}
+#- name: Ensure oci oss bucket exists
+#  become: root
+#  command: oci os bucket get --name {{ oss_bucket_name }}
 
+- name: Ensure oci oss bucket exists
+  oci:
+    command: os bucket get
+    name: "{{ oss_bucket_name }}"
+  become: yes
+  become_user: root
+  
 - name: Upload folder to oci oss bucket
   become: root
   command: oci os object bulk-upload -bn {{ oss_bucket_name }} --prefix {{ oss_path }} --src-dir {{ local_file_or_folder_path }} --content-type auto
